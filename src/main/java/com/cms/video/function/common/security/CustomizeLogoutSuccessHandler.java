@@ -16,6 +16,7 @@ import org.springframework.security.web.authentication.logout.LogoutSuccessHandl
 import org.springframework.stereotype.Component;
 
 import com.alibaba.fastjson2.JSON;
+import com.cms.video.function.common.constant.WebRelatedConstant;
 import com.cms.video.function.common.utils.ResultCodeUtil;
 import com.cms.video.function.entity.basic.JsonResult;
 
@@ -31,7 +32,7 @@ public class CustomizeLogoutSuccessHandler implements LogoutSuccessHandler {
     public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
         throws IOException, ServletException {
         JsonResult result = ResultCodeUtil.success();
-        response.setContentType("text/json;charset=utf-8");
+        response.setContentType(WebRelatedConstant.CONTENT_TYPE);
         response.getWriter().write(JSON.toJSONString(result));
     }
 }

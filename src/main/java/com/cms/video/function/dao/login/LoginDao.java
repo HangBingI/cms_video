@@ -31,4 +31,14 @@ public interface LoginDao {
             @Result(property = "permissionCode", column = "permission_code"),
             @Result(property = "permissionName", column = "permission_name")})
     List<PermissionInfo> queryPermissionByAccount(@Param("account") String account);
+
+    /**
+     * 根据URL查询请求权限
+     *
+     * @param reqUrl 请求URL
+     * @return 权限信息集合
+     */
+    @Select("SELECT * FROM sys_permission a,sys_request_path b,sys_req_permission_relation c WHERE a.id = c.permission_id AND c.url_id = b.id AND b.url = #{reqUrl};")
+    @ResultMap(value = "permission")
+    List<PermissionInfo> queryPermissionByUrl(@Param("reqUrl") String reqUrl);
 }

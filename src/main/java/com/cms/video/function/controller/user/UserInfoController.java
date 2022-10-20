@@ -7,6 +7,7 @@ package com.cms.video.function.controller.user;
 
 import javax.annotation.Resource;
 
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,7 +37,7 @@ public class UserInfoController {
     private UserService userService;
 
     @RequestMapping("/getUser.do")
-    public UserInfo getUser(String account) {
+    public UserInfo getUser(@Param("username") String account) {
         logger.info("Query UserInfo, account=", account);
         UserInfo userInfo = userService.queryUserINfoByAccountName(account);
         logger.info("Query UserInfo, User=", userInfo);

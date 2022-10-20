@@ -33,4 +33,9 @@ public class LoginServiceImpl implements LoginService {
     public List<PermissionInfo> queryPermissionByAccount(String account) {
         return loginDao.queryPermissionByAccount(account);
     }
+
+    @Override
+    public List<PermissionInfo> queryPermissionByUrl(String reqUrl) {
+        return loginDao.queryPermissionByUrl(reqUrl);
+    }
 }

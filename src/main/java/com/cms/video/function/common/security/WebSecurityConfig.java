@@ -9,7 +9,9 @@ import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.ObjectPostProcessor;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -79,10 +81,18 @@ public class WebSecurityConfig {
     @Resource
     private CustomizeAbstractSecurityInterceptor securityInterceptor;
 
+    @Resource
+    private AuthenticationConfiguration authenticationConfiguration;
+
     @Bean
     public UserDetailsService userDetailsService() {
         // 获取用户账号密码及权限信息
         return new UserDetailsServiceImpl();
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager() throws Exception {
+        return authenticationConfiguration.getAuthenticationManager();
     }
 
     @Bean

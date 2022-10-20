@@ -32,7 +32,7 @@ public class CustomizeAccessDeniedHandler implements AccessDeniedHandler {
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response,
         AccessDeniedException accessDeniedException) throws IOException, ServletException {
-        JsonResult result = ResultCodeUtil.fail(ResultCode.USER_NOT_LOGIN);
+        JsonResult result = ResultCodeUtil.fail(ResultCode.NO_PERMISSION);
         response.setContentType(WebRelatedConstant.CONTENT_TYPE);
         response.getWriter().write(JSON.toJSONString(result));
     }

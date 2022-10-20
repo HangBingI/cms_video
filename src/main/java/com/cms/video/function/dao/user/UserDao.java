@@ -36,4 +36,13 @@ public interface UserDao {
             @Result(property = "createUser", column = "create_user"),
             @Result(property = "updateUser", column = "update_user")})
     UserInfo queryUserINfoByAccountName(@Param("account") String account);
+
+    /**
+     * 修改用户信息
+     *
+     * @param userInfo 用户信息
+     */
+    @Update("UPDATE sys_user u SET u.account_number=#{account},u.user_name=#{userName},u.pwd=#{password},u.last_login_time=#{lastLoginTime,jdbcType=TIMESTAMP},u.enabled=#{enable},u.is_expired=#{isExpired},u.account_is_locked=#{accountIsLocked},u.credentials_is_expired=#{credentialsIsExpired},u.create_time=#SS{createTime},u.update_time=#{updateTime},u.create_user=#{createUser},u.update_user=#{updateUser} WHERE id =#{userId}")
+    void updateUserInfo(UserInfo userInfo);
+
 }

@@ -20,4 +20,11 @@ public interface UserService {
      * @return 用户信息
      */
     UserInfo queryUserINfoByAccountName(String account);
+
+    /**
+     * 修改用户信息
+     *
+     * @param userInfo 用户信息
+     */
+    void updateUserInfo(UserInfo userInfo);
 }

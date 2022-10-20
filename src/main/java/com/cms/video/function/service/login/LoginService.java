@@ -7,8 +7,6 @@ package com.cms.video.function.service.login;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
-
 import com.cms.video.function.entity.login.PermissionInfo;
 
 /**
@@ -24,5 +22,13 @@ public interface LoginService {
      * @param account 账号
      * @return 权限信息集合
      */
-    List<PermissionInfo> queryPermissionByAccount(@Param("account") String account);
+    List<PermissionInfo> queryPermissionByAccount(String account);
+
+    /**
+     * 根据URL查询请求权限
+     * 
+     * @param reqUrl 请求URL
+     * @return 权限信息集合
+     */
+    List<PermissionInfo> queryPermissionByUrl(String reqUrl);
 }

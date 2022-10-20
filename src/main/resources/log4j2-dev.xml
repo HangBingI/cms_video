@@ -51,7 +51,7 @@
     </Appenders>
 
     <Loggers>
-        <Root level="INFO">
+        <Root level="DEBUG">
             <AppenderRef ref="console"/>
             <AppenderRef ref="info"/>
             <AppenderRef ref="error"/>

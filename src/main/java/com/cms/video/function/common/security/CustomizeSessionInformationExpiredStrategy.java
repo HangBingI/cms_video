@@ -15,6 +15,7 @@ import org.springframework.security.web.session.SessionInformationExpiredStrateg
 import org.springframework.stereotype.Component;
 
 import com.alibaba.fastjson2.JSON;
+import com.cms.video.function.common.constant.WebRelatedConstant;
 import com.cms.video.function.common.utils.ResultCodeUtil;
 import com.cms.video.function.entity.basic.JsonResult;
 import com.cms.video.function.entity.basic.ResultCode;
@@ -32,7 +33,7 @@ public class CustomizeSessionInformationExpiredStrategy implements SessionInform
     public void onExpiredSessionDetected(SessionInformationExpiredEvent event) throws IOException, ServletException {
         JsonResult result = ResultCodeUtil.fail(ResultCode.USER_ACCOUNT_USE_BY_OTHERS);
         HttpServletResponse response = event.getResponse();
-        response.setContentType("text/json;charset=utf-8");
+        response.setContentType(WebRelatedConstant.CONTENT_TYPE);
         response.getWriter().write(JSON.toJSONString(result));
     }
 }

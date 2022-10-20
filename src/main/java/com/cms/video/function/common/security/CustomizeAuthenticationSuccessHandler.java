@@ -20,6 +20,7 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.stereotype.Component;
 
 import com.alibaba.fastjson2.JSON;
+import com.cms.video.function.common.constant.WebRelatedConstant;
 import com.cms.video.function.common.utils.ResultCodeUtil;
 import com.cms.video.function.entity.basic.JsonResult;
 import com.cms.video.function.entity.user.UserInfo;
@@ -48,7 +49,7 @@ public class CustomizeAuthenticationSuccessHandler implements AuthenticationSucc
         userInfo.setLastLoginTime(new Date(new java.util.Date().getTime()));
         userInfo.setUpdateTime(new Date(new java.util.Date().getTime()));
         userInfo.setUpdateUser(userInfo.getUserId());
-        // userInfo.update(sysUser);
+        userService.updateUserInfo(userInfo);
 
         // 此处还可以进行一些处理，比如登录成功之后可能需要返回给前台当前用户有哪些菜单权限，
         // 进而前台动态的控制菜单的显示等，具体根据自己的业务需求进行扩展
@@ -56,7 +57,7 @@ public class CustomizeAuthenticationSuccessHandler implements AuthenticationSucc
         // 返回json数据
         JsonResult result = ResultCodeUtil.success();
         // 处理编码方式，防止中文乱码的情况
-        response.setContentType("text/json;charset=utf-8");
+        response.setContentType(WebRelatedConstant.CONTENT_TYPE);
         // 塞到HttpServletResponse中返回给前台
         response.getWriter().write(JSON.toJSONString(result));
     }

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2022/10/15 13:02
  **/
 @RestController
-@RequestMapping("/login")
+@RequestMapping("/customizeLogin")
 public class LoginController {
     /**
      * 日志记录
